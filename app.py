@@ -5,14 +5,13 @@ import pyodbc
 app = Flask(__name__)
 def get_db_connection():
     conn_str = os.environ.get('SQLAZURECONNSTR_DB_CONNECTION_STRING')
-    print("CONN_STR:", repr(conn_str))
     conn = pyodbc.connect(conn_str)
     return conn
 
 @app.route('/')
 def index():
-    print(">>> WCHODZĘ DO ENDPOINTU / <<<")
-    tasks_html = "<h2>Lista zadan z bazy danych:</h2><ul>"
+    tasks_html = "<h1>Witaj! Aplikacja wdrożona przez GitHub Actions!</h1>"
+    tasks_html += "<h2>Lista zadan z bazy danych:</h2><ul>"
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
